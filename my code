@@ -1,0 +1,29 @@
+#include <studio.h>
+#include <math.h>
+
+double squareroot_of_number(double number, double guess) {
+    // Base case: If the difference between the square of the guess and the number is very small,
+    // we consider the guess as the square root
+    if (fabs(guess * guess - number) < 0.00001)
+        return guess;
+    // Recursive case: Improve the guess using Newton's method and call the function recursively
+    else {
+        // Newton's method to improve the guess
+        double new_guess = 0.5 * (guess + number / guess);
+        // Call the function recursively with the improved guess
+        return squareroot_of_number(number, new_guess);
+    }
+}
+
+int main() {
+    double number;
+    
+    // Input number from user
+    printf("Enter a number: ");
+    scanf("%lf", &number);
+    
+    // Call the function to find the square root and print the result
+    printf("Square root of %.2lf is %.5lf\n", number, squareroot_of_number(number, number / 2));
+    
+    return 0;
+}
